@@ -1,5 +1,6 @@
 package com.etnopolino.Task_springboot.entities;
 
+import com.etnopolino.Task_springboot.dto.UserDto;
 import com.etnopolino.Task_springboot.enums.UserRole;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //private String name;
+    private String name;
     private String email;
     private String password;
     private UserRole userRole;
@@ -53,5 +54,14 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UserDto getUserDto(){
+        UserDto userDto = new UserDto();
+        userDto.setId(id);
+        userDto.setName(name);
+        userDto.setEmail(email);
+        userDto.setUserRole(userRole);
+        return userDto;
     }
 }
