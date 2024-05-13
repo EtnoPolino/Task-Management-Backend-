@@ -32,7 +32,7 @@ public class JwtUtil {
     }
 
     private Key getSigningKey(){
-        byte[] keyBytes = Decoders.BASE64.decode("cRxeZEWMR3Y_SJVOtqny2LBnO5g");
+        byte[] keyBytes = Decoders.BASE64.decode("riOX5trUmobZlyQtkkZwVVXXGAj4Hfg6fhsDshSPm1ANZA/ZNrKc1kiYYjAxNtD9Q8Y="); // utiliser ce site : https://generate.plus/en/base64 et 50 keys by bytes
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
