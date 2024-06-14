@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
-@CrossOrigin("*") //on autorise toutes les requete qui vont venir du front end
+@CrossOrigin(origins = "*") //on autorise toutes les requete qui vont venir du front end
 public class AdminController {
     private final AdminService adminService;
 
@@ -45,12 +47,16 @@ public class AdminController {
     public ResponseEntity<TaskDto> getTaskById(@PathVariable Long id){
         return ResponseEntity.ok(adminService.getTaskById(id));
     }
-
     @PutMapping("/task/{id}")
     public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody TaskDto taskDto){
         TaskDto updatedTask = adminService.updateTask(id, taskDto);
         if(updatedTask == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(updatedTask);
+    }
+
+    @GetMapping("/tasks/search/{title}")
+    public ResponseEntity<List<TaskDto>> searchTask(@PathVariable String title){
+        return ResponseEntity.ok(adminService.searchTaskByTitle(title));
     }
 
 }
