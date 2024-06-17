@@ -1,5 +1,6 @@
 package com.etnopolino.Task_springboot.services.admin;
 
+import com.etnopolino.Task_springboot.dto.CommentDTO;
 import com.etnopolino.Task_springboot.dto.TaskDto;
 import com.etnopolino.Task_springboot.dto.UserDto;
 
@@ -20,4 +21,6 @@ public interface AdminService {
     TaskDto updateTask(Long id, TaskDto taskDto);
 
     List<TaskDto> searchTaskByTitle(String title);
+
+    CommentDTO createComment(Long taskID, String content);
 }
