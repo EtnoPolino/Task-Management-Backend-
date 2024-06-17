@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
-@CrossOrigin(origins = "*") //on autorise toutes les requete qui vont venir du front end
+@CrossOrigin("*") //on autorise toutes les requete qui vont venir du front end
 public class AdminController {
     private final AdminService adminService;
 
