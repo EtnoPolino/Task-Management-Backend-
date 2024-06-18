@@ -1,5 +1,6 @@
 package com.etnopolino.Task_springboot.controller.employee;
 
+import com.etnopolino.Task_springboot.dto.CommentDTO;
 import com.etnopolino.Task_springboot.dto.TaskDto;
 import com.etnopolino.Task_springboot.services.employee.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,23 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedTaskDTO);
     }
 
+    @PostMapping("/task/comment/{taskId}")
+    public ResponseEntity<CommentDTO> createComment(@PathVariable Long taskId, @RequestParam String content){
+        CommentDTO createdCommentDTO = employeeService.createComment(taskId, content);
 
+        if(createdCommentDTO == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCommentDTO);
+    }
+
+    @GetMapping("/comments/{taskId}")
+    public ResponseEntity<List<CommentDTO>> getCommentsByTaskIds(@PathVariable Long taskId){
+        return ResponseEntity.ok(employeeService.getCommentsByTaskId(taskId));
+    }
+
+    @GetMapping("/task/{id}")
+    public ResponseEntity<TaskDto> getTaskById(@PathVariable Long id){
+        return ResponseEntity.ok(employeeService.getTaskById(id));
+    }
 }
