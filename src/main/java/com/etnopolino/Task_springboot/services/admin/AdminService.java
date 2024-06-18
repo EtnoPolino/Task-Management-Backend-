@@ -23,4 +23,6 @@ public interface AdminService {
     List<TaskDto> searchTaskByTitle(String title);
 
     CommentDTO createComment(Long taskID, String content);
+
+    List<CommentDTO> getCommentsByTaskId(Long id);
 }
